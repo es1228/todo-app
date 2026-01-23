@@ -1,13 +1,17 @@
 //import { useState } from 'react'
 import './App.css'
-import Label from './Label';
+import Header from './Header';
+import Task from './Task';
 
 // main app
 export default function App() {
   // components
   return (
     <>
-      <Label/>
+      <Header/>
+      <Task/>
+      <Task/>
+      <Task/>
     </>
   );
 }
