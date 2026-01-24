@@ -1,17 +1,16 @@
-//import { useState } from 'react'
 import './App.css'
 import Header from './Header';
-import Task from './Task';
+import AddContainer from './AddContainer';
+import TaskContainer from './TaskContainer';
 
-// main app
 export default function App() {
-  // components
   return (
     <>
       <Header/>
-      <Task/>
-      <Task/>
-      <Task/>
+      <AddContainer/>
+      <TaskContainer/>
+      <TaskContainer/>
+      <TaskContainer/>
     </>
   );
 }
