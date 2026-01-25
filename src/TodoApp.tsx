@@ -62,43 +62,31 @@ function AddTaskContainer() {
 
 // task info
 function TaskContainer() {
+    function handleDeleteTask(id : number) {
+        const updatedTasks = (tasks.filter(task => task.id !== id));
+        setTasks(updatedTasks);
+    }
     const TaskItems = tasks.map(task => 
         <div key={task.id} className="flex flex-row justify-center items-center mt-4 gap-4">
             <div className="bg-slate-200 dark:bg-stone-900 text-color:black dark:text-color: white rounded-lg p-4
                 lg:min-w-2xl md:min-w-xl min-w-lg">
                     <p className="text-lg">{task.text}</p>
             </div>
-            <EditButton/>
-            <DeleteButton/>
+            <div>
+                <button type="submit" className="p-4 rounded-lg bg-slate-200 dark:bg-stone-900 
+                text-color:black dark:text-color: white hover:cursor-pointer">🖊️</button>
+            </div>
+            <div>
+                <button type="submit" 
+                onClick={() => handleDeleteTask(task.id)}
+                className="p-4 rounded-lg bg-slate-200 dark:bg-stone-900 
+                text-color:black dark:text-color: white hover:cursor-pointer">🗑️</button>
+            </div>
         </div>
     )
     return (
         <>
             {TaskItems}
-        </>
-    )
-}
-
-// delete button
-function DeleteButton() {
-    return (
-        <>
-            <div>
-                <button type="submit" className="p-4 rounded-lg bg-slate-200 dark:bg-stone-900 
-                text-color:black dark:text-color: white hover:cursor-pointer">🗑️</button>
-            </div>
-        </>
-    )
-}
-
-// edit button
-function EditButton() {
-    return (
-        <>
-            <div>
-                <button type="submit" className="p-4 rounded-lg bg-slate-200 dark:bg-stone-900 
-                text-color:black dark:text-color: white hover:cursor-pointer">🖊️</button>
-            </div>
         </>
     )
 }
