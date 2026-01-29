@@ -8,7 +8,9 @@ import Dialog from './Dialog';
 export type Task = {
     id : number,
     text : string,
-    completed : boolean
+    completed : boolean,
+    dueDate : string,
+    priority : "High" | "Medium" | "Low" | "None"
 }
 
 export default function TodoApp() {
@@ -29,7 +31,7 @@ export default function TodoApp() {
 
     const onAdd = () => {
         if (inputText.length > 0) {
-            const newTask : Task = {id: Date.now(), text: inputText, completed: false};
+            const newTask : Task = {id: Date.now(), text: inputText, completed: false, dueDate: "None", priority: "None"};
             setTasks(t => [...t, newTask]);
             setInputText("");
         }

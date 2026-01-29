@@ -8,7 +8,7 @@ type ButtonProps = {
 export default function Button(props : ButtonProps) {
     return (
         <>
-            <button type="submit" className="p-4 rounded-lg bg-slate-200/30 dark:bg-neutral-950/30
+            <button type="submit" className="p-4 rounded-lg bg-neutral-50/30 dark:bg-neutral-950/30
             backdrop-blur-lg text-black dark:text-white hover:cursor-pointer"
             onClick={props.onClick}>
                 {props.text}
