@@ -11,7 +11,7 @@ export default function Button(props : ButtonProps) {
             <button type="submit" className="p-4 rounded-lg bg-neutral-50/30 dark:bg-neutral-950/30
             backdrop-blur-lg text-black dark:text-white hover:cursor-pointer"
             onClick={props.onClick}>
-                {props.text}
+                <p>{props.text}</p>
             </button>
         </>
     )

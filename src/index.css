@@ -1,27 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Varela+Round&display=swap');
-@import 'tailwindcss';
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Varela+Round&display=swap");
+@import "tailwindcss";
 
 :root {
-  font-family: "Varela Round", sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+	font-family: "Varela Round", sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
 
-  color-scheme: light dark;
-  background-color: rgba(22, 27, 34, 1);
+	color-scheme: light dark;
+	background-color: rgba(22, 27, 34, 1);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: rgb(218, 221, 231, 1);
-  }
+	:root {
+		color: #213547;
+		background-color: rgb(218, 221, 231, 1);
+	}
 }
 
 ::-webkit-calendar-picker-indicator {
-  margin-left: -30px;
+	margin-left: -30px;
+}
+
+select,
+::picker(select) {
+    appearance: base-select;
+    border: none;
+    border-radius: 5px;
+    background-color: light-dark(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+    outline: none;
+    backdrop-filter: blur(20px);
+}
+
+::picker(select) {
+  padding: 5px;
+  flex: 1;
 }

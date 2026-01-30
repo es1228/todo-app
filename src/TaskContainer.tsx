@@ -7,6 +7,7 @@ type TaskContainerProps = {
     tasks : Task[],
     handleDelete : (id : number) => void,
     handleEdit : (id : number) => void,
+    handleDialog : (id : number) => void
 }
 
 export default function TaskContainer(props : TaskContainerProps) {
@@ -18,14 +19,14 @@ export default function TaskContainer(props : TaskContainerProps) {
                 <p className="text-sm">Name</p>
                 <p className="text-lg">{task.text}</p>
             </div>
-            <div className="flex flex-row gap-16 items-center ml-auto">
+            <div className="flex flex-row gap-8 items-center ml-auto">
                 <div>
                     <p className="text-sm">Due Date</p>
                     <DatePicker/>
                 </div>
                 <div>
                     <p className="text-sm">Priority</p>
-                    <PriorityLabel priorityLevel={task.priority}/>
+                    <PriorityLabel priorityLevel={task.priority} onClick={() => props.handleDialog(task.id)}/>
                 </div>
                 <div className="flex flex-row gap-4">
                     <Button text="Edit" onClick={() => props.handleEdit(task.id)}/>
