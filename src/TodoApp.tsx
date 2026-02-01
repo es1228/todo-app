@@ -103,6 +103,17 @@ export default function TodoApp() {
 		setDialogOpen(true);
 	};
 
+	const setStatus = (id : number) => {
+		setTasks((t) =>
+			t.map((task) => {
+				if (task.id === id) {
+					return { ...task, completed: !task.completed };
+				}
+				return task;
+			}),
+		);
+	}
+
 	return (
 		<>
 			<Header />
@@ -117,6 +128,7 @@ export default function TodoApp() {
 				handleEdit={handleEditClick}
 				handleDialog={handleDialog}
 				onDateChange={onDate}
+				handleCheckBoxClick={setStatus}
 			/>
 			<Dialog
 				handleClose={onClose}
