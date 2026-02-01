@@ -1,9 +1,11 @@
 export default function Header() {
-    return (
-        <>
-            <div className="flex items-center justify-center mt-10">
-                <h1 className="font-bold text-black dark:text-white mb-10 text-5xl">Todo App</h1>
-            </div>
-        </>
-    )
+	return (
+		<>
+			<div className="mt-10 flex items-center justify-center">
+				<h1 className="mb-10 text-5xl font-bold text-black dark:text-white">
+					Todo App
+				</h1>
+			</div>
+		</>
+	);
 }

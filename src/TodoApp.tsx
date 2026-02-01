@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import Header from "./Header";
 import AddTaskContainer from "./AddTaskContainer";
 import TaskContainer from "./TaskContainer";
@@ -10,17 +10,24 @@ export type Task = {
 	text: string;
 	completed: boolean;
 	dueDate: string;
-	priority: "High" | "Medium" | "Low" | "None" | "";
+	priority: "High" | "Med" | "Low" | "None" | "";
 };
 
 export default function TodoApp() {
-	// define variables
-	const [tasks, setTasks] = useState<Task[]>([]);
+	const [tasks, setTasks] = useState<Task[]>(() => {
+		const storedTasks = localStorage.getItem("todo-tasks");
+		return storedTasks ? JSON.parse(storedTasks) : [];
+	});
 	const [inputText, setInputText] = useState<string>("");
 	const [dialogOpen, setDialogOpen] = useState<boolean>(false);
 	const [editText, setEditText] = useState<string>("");
-    const [editPriority, setEditPriority] = useState<Task["priority"]>("None");
+	const [editPriority, setEditPriority] = useState<Task["priority"]>("None");
 	const [editId, setEditId] = useState<number>(0);
+	const today: string = new Date().toISOString().split("T")[0];
+
+	useEffect(() => {
+		localStorage.setItem("todo-tasks", JSON.stringify(tasks));
+	}, [tasks]);
 
 	const handleAddInput = (event: ChangeEvent<HTMLInputElement>) => {
 		setInputText(event.target.value);
@@ -36,7 +43,7 @@ export default function TodoApp() {
 				id: Date.now(),
 				text: inputText,
 				completed: false,
-				dueDate: "None",
+				dueDate: today,
 				priority: "None",
 			};
 			setTasks((t) => [...t, newTask]);
@@ -59,8 +66,9 @@ export default function TodoApp() {
 		setEditId(id);
 		const originalText: string = tasks.find((t) => t.id === id)?.text ?? "";
 		setEditText(originalText);
-        const originalPriority: Task["priority"] = tasks.find((t) => t.id === id)?.priority ?? "";
-        setEditPriority(originalPriority);
+		const originalPriority: Task["priority"] =
+			tasks.find((t) => t.id === id)?.priority ?? "";
+		setEditPriority(originalPriority);
 	};
 
 	const onEdit = () => {
@@ -77,11 +85,24 @@ export default function TodoApp() {
 		setDialogOpen(false);
 	};
 
+	const onDate = (id : number, dueDate : string) => {
+		setTasks((t) =>
+			t.map((task) => {
+				if (task.id === id) {
+					return { ...task, dueDate: dueDate };
+				}
+				return task;
+			}),
+		);
+		setEditId(0);
+		setEditText("");
+		setDialogOpen(false);
+	};
+
 	const handleDialog = () => {
 		setDialogOpen(true);
 	};
 
-	// layout
 	return (
 		<>
 			<Header />
@@ -95,6 +116,7 @@ export default function TodoApp() {
 				handleDelete={onDelete}
 				handleEdit={handleEditClick}
 				handleDialog={handleDialog}
+				onDateChange={onDate}
 			/>
 			<Dialog
 				handleClose={onClose}
@@ -102,8 +124,10 @@ export default function TodoApp() {
 				handleInput={handleEditInput}
 				handleEdit={onEdit}
 				inputText={editText}
-                priority={editPriority}
-                onPriorityChange={(e) => setEditPriority(e.target.value as "High" | "Medium" | "Low" | "")}
+				priority={editPriority}
+				onPriorityChange={(e) =>
+					setEditPriority(e.target.value as "High" | "Med" | "Low" | "")
+				}
 			/>
 		</>
 	);
