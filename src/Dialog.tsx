@@ -17,7 +17,7 @@ export default function Dialog(props: DialogProps) {
 		return (
 			<>
 				<div className="fixed inset-0 mr-auto ml-auto flex flex-col items-center justify-center bg-slate-200/30 backdrop-blur-lg dark:bg-neutral-950/30">
-					<div className="w-4xl max-w-[95%] rounded-lg bg-neutral-50/30 backdrop-blur-lg dark:bg-neutral-950/30">
+					<div className="w-3xl lg:w-4xl max-w-[95%] rounded-lg bg-neutral-50/30 backdrop-blur-lg dark:bg-neutral-950/30">
 						<h1 className="m-4 text-2xl">Edit</h1>
 						<div className="m-4 flex flex-col gap-4 lg:flex-row lg:items-center">
 							<div>
@@ -35,7 +35,7 @@ export default function Dialog(props: DialogProps) {
 									</select>
 								</div>
 							</div>
-							<form className="flex flex-row gap-4">
+							<form className="flex flex-col md:flex-row gap-4">
 								<div>
 									<p className="text-sm">Task Name</p>
 									<TextBox

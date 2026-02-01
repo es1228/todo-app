@@ -10,7 +10,7 @@ export type Task = {
 	text: string;
 	completed: boolean;
 	dueDate: string;
-	priority: "High" | "Med" | "Low" | "None" | "";
+	priority: "High" | "Med" | "Low" | "None" | "Done" | "";
 };
 
 export default function TodoApp() {
@@ -72,20 +72,22 @@ export default function TodoApp() {
 	};
 
 	const onEdit = () => {
-		setTasks((t) =>
-			t.map((task) => {
-				if (task.id === editId) {
-					return { ...task, text: editText, priority: editPriority };
-				}
-				return task;
-			}),
-		);
-		setEditId(0);
-		setEditText("");
-		setDialogOpen(false);
+		if (editText.length > 0) {
+			setTasks((t) =>
+				t.map((task) => {
+					if (task.id === editId) {
+						return { ...task, text: editText, priority: editPriority };
+					}
+					return task;
+				}),
+			);
+			setEditId(0);
+			setEditText("");
+			setDialogOpen(false);
+		}
 	};
 
-	const onDate = (id : number, dueDate : string) => {
+	const onDate = (id: number, dueDate: string) => {
 		setTasks((t) =>
 			t.map((task) => {
 				if (task.id === id) {
@@ -103,16 +105,19 @@ export default function TodoApp() {
 		setDialogOpen(true);
 	};
 
-	const setStatus = (id : number) => {
+	const setStatus = (id: number) => {
 		setTasks((t) =>
 			t.map((task) => {
 				if (task.id === id) {
-					return { ...task, completed: !task.completed };
+					if (task.completed) {
+						return { ...task, completed: !task.completed, priority: "None" };
+					}
+					return { ...task, completed: !task.completed, priority: "Done" };
 				}
 				return task;
 			}),
 		);
-	}
+	};
 
 	return (
 		<>

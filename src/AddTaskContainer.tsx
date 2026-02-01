@@ -11,7 +11,7 @@ type AddTaskContainerProps = {
 export default function AddTaskContainer(props: AddTaskContainerProps) {
 	return (
 		<>
-			<form className="mx-auto flex flex-row items-center justify-center w-full max-w-[95%] md:w-2xl lg:w-3xl gap-4 rounded-lg p-2">
+			<form className="mx-auto flex w-full max-w-[95%] flex-row items-center justify-center gap-4 rounded-lg p-2 md:w-2xl lg:w-3xl">
 				<TextBox
 					text="Enter a Task..."
 					value={props.inputText}

@@ -12,7 +12,7 @@ export default function TextBox(props: TextBoxProps) {
 			<input
 				type="text"
 				placeholder={props.text}
-				className="w-lg max-w-full rounded-lg bg-neutral-50/30 p-4 text-black outline-0 backdrop-blur-lg md:w-xl dark:bg-neutral-950/30 dark:text-white"
+				className="w-lg max-w-full rounded-lg bg-neutral-50/30 p-4 text-black outline-0 backdrop-blur-lg lg:w-xl dark:bg-neutral-950/30 dark:text-white"
 				value={props.value}
 				onChange={props.onChange}
 			></input>
